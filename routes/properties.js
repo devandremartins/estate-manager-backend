@@ -1,5 +1,11 @@
 const express = require('express');
-const { getProperties, getProperty, createProperty, updateProperty, deleteProperty } = require('../controllers/properties');
+const {
+    getProperties,
+    getProperty,
+    createProperty,
+    updateProperty,
+    deleteProperty
+} = require('../controllers/properties');
 const router = express.Router();
 
 router.route('/').get(getProperties).post(createProperty);
