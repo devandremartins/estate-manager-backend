@@ -1,17 +1,39 @@
 const Property = require('../models/Property');
 
-exports.getProperties = (req, res, next) => {
-  res.status(200).json({
-    sucess: true,
-    msg: 'Show all properties'
-  });
+exports.getProperties = async (req, res, next) => {
+  try {
+    const properties = await Property.find();
+    res.status(200).json({
+      success: true,
+      count: properties.length,
+      data: properties
+    });
+  } catch (err) {
+    res.status(400).json({
+      success: false
+    });
+  }
 };
 
-exports.getProperty = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: `Show property ${req.params.id}`
-  });
+exports.getProperty = async (req, res, next) => {
+  try {
+    const property = await Property.findById(req.params.id);
+
+    if (!property) {
+      return res.status(400).json({
+        success: false
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: property
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false
+    });
+  }
 };
 
 exports.createProperty = async (req, res, next) => {
@@ -28,16 +50,45 @@ exports.createProperty = async (req, res, next) => {
   }
 };
 
-exports.updateProperty = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: `Show property ${req.params.id}`
-  });
+exports.updateProperty = async (req, res, next) => {
+  try {
+    const property = await Property.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
+    if (!property) {
+      res.status(400).json({
+        success: false
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: property
+    });
+  } catch (err) {
+    res.status(400).json({
+      success: false
+    });
+  }
 };
 
-exports.deleteProperty = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    msg: `Show property ${req.params.id}`
-  });
+exports.deleteProperty = async (req, res, next) => {
+  try {
+    const property = await Property.findByIdAndDelete(req.params.id);
+
+    if (!property) {
+      return res.status(400).json({
+        success: false
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: {}
+    });
+  } catch (err) {
+    res.status(400).json({
+      success: false
+    });
+  }
 };
