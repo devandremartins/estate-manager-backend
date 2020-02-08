@@ -1,3 +1,5 @@
+const Property = require('../models/Property');
+
 exports.getProperties = (req, res, next) => {
   res.status(200).json({
     sucess: true,
@@ -12,11 +14,18 @@ exports.getProperty = (req, res, next) => {
   });
 };
 
-exports.createProperty = (req, res, next) => {
-  res.status(200).json({
-    sucess: true,
-    msg: 'Create property'
-  });
+exports.createProperty = async (req, res, next) => {
+  try {
+    const property = await Property.create(req.body);
+    res.status(201).json({
+      success: true,
+      data: property
+    });
+  } catch (err) {
+    res.status(400).json({
+      success: false
+    });
+  }
 };
 
 exports.updateProperty = (req, res, next) => {

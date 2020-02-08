@@ -11,16 +11,22 @@ const PropertySchema = new mongoose.Schema({
     type: String,
     maxlength: [500, 'Description can not be more than 500 characters']
   },
-  furnished: Boolean,
+  furnished: {
+    type: Boolean,
+    default: true
+  },
+  address: {
+    type: String,
+    required: [true, 'Please add the address']
+  },
   location: {
+    // GeoJson Point
     type: {
       type: String,
-      enum: ['Point'],
-      required: true
+      enum: ['Point']
     },
     coordinates: {
-      type: [number],
-      required: true,
+      type: [Number],
       index: '2dsphere'
     },
     formatedAddress: String,
