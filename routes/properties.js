@@ -4,10 +4,13 @@ const {
   getProperty,
   createProperty,
   updateProperty,
-  deleteProperty
+  deleteProperty,
+  getPropertiesInRadius
 } = require('../controllers/properties');
 
 const router = express.Router();
+
+router.route('/radius/:zipcode/:distance').get(getPropertiesInRadius);
 
 router
   .route('/')
