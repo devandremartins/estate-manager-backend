@@ -3,7 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=node,macos,dotenv,windows,visualstudiocode
 
 ### dotenv ###
-.env
+config/*.env
 
 ### macOS ###
 # General
