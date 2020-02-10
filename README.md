@@ -16,3 +16,4 @@ Node.js API for Estate Management
 - [Prettier](https://prettier.io/) - Code formatter
 - [Nodemon](https://www.npmjs.com/package/nodemon) - Utility thats restarts server on code change
 - [Compass](https://www.mongodb.com/products/compass) - GUI for MongoDB
+- [Postman](https://www.postman.com) - HTTP client for testing web services
