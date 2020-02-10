@@ -17,6 +17,46 @@ const PropertySchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  garage: {
+    type: Boolean,
+    default: false
+  },
+  parking: {
+    type: Boolean,
+    default: false
+  },
+  garden: {
+    type: Boolean,
+    default: false
+  },
+  balcony: {
+    type: Boolean,
+    default: false
+  },
+  shower: {
+    type: Boolean,
+    default: false
+  },
+  washmachine: {
+    type: Boolean,
+    default: false
+  },
+  dishwasher: {
+    type: Boolean,
+    default: false
+  },
+  burglaralarm: {
+    type: Boolean,
+    default: false
+  },
+  petsallowed: {
+    type: Boolean,
+    default: false
+  },
+  smokersallowed: {
+    type: Boolean,
+    default: false
+  },
   address: {
     type: String,
     required: [true, 'Please add the address']
