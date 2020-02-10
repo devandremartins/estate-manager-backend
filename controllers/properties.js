@@ -4,7 +4,13 @@ const geocoder = require('../utils/geocoder');
 const Property = require('../models/Property');
 
 exports.getProperties = asyncHandler(async (req, res, next) => {
-  const properties = await Property.find();
+  let query;
+  let queryStr = JSON.stringify(req.query);
+  queryStr = queryStr.replace(/\b(gt\gte\lt\lte\in)\b/g, match => `$${match}`);
+
+  query = Property.find(JSON.parse(queryStr));
+
+  const properties = await query;
   res.status(200).json({
     success: true,
     count: properties.length,
