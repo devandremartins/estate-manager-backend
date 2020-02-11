@@ -9,10 +9,25 @@ const PropertySchema = new mongoose.Schema({
     unique: true
   },
   slug: String,
+  reference: String,
+  type: {
+    type: String,
+    required: true,
+    enum: ['Apartment', 'House', 'Room', 'Land', 'Commercial Property']
+  },
+  toRent: {
+    type: Boolean,
+    default: true
+  },
+  toSell: {
+    type: Boolean,
+    default: false
+  },
   description: {
     type: String,
     maxlength: [500, 'Description can not be more than 500 characters']
   },
+  tenantFees: String,
   furnished: {
     type: Boolean,
     default: true
@@ -45,21 +60,26 @@ const PropertySchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  burglaralarm: {
+  burglarAlarm: {
     type: Boolean,
     default: false
   },
-  petsallowed: {
+  petsAllowed: {
     type: Boolean,
     default: false
   },
-  smokersallowed: {
+  smokersAllowed: {
     type: Boolean,
     default: false
   },
   address: {
     type: String,
     required: [true, 'Please add the address']
+  },
+  availableDate: {
+    type: Date,
+    min: Date.now,
+    default: Date.now
   },
   location: {
     // GeoJson Point
