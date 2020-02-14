@@ -10,16 +10,20 @@ const {
 
 const router = express.Router();
 
+const {
+  protect
+} = require('../middleware/auth');
+
 router.route('/radius/:zipcode/:distance').get(getPropertiesInRadius);
 
 router
   .route('/')
   .get(getProperties)
-  .post(createProperty);
+  .post(protect, createProperty);
 router
   .route('/:id')
   .get(getProperty)
-  .put(updateProperty)
-  .delete(deleteProperty);
+  .put(protect, updateProperty)
+  .delete(protect, deleteProperty);
 
 module.exports = router;

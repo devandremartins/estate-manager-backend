@@ -78,7 +78,6 @@ const PropertySchema = new mongoose.Schema({
   },
   availableDate: {
     type: Date,
-    min: Date.now,
     default: Date.now
   },
   location: {
